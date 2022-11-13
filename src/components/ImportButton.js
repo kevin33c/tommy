@@ -1,8 +1,19 @@
 import Button from '@mui/material/Button';
+import { ChromeServices } from '../services/chrome.services';
+
+
+const chromeService = new ChromeServices();
+
 
 export default function ImportButton() {
+
+  function test() {
+    chromeService.onClick();
+  }
+
   return (
     <Button
+      onClick={test}
       fullWidth
       variant="outlined"
       color="inherit"
