@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,12 +10,23 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import MenuItem from '@mui/material/MenuItem';
 
-const languages = ['English', 'German', 'French'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const languages = [
+  { name: 'English', key: 'EN', disabled: false },
+  { name: 'German', key: 'DE', disabled: true },
+  { name: 'French', key: 'FR', disabled: true }
+]
+
+const settings = [
+  { name: 'Hubspot', key: 'HO', disabled: false },
+  { name: 'Salesforce', key: 'SA', disabled: true },
+  { name: 'Zoho', key: 'ZO', disabled: true },
+  { name: 'Affinity', key: 'AF', disabled: true },
+  { name: 'Log Out', key: 'LO', disabled: false },
+];
 
 export default function Navbar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -68,8 +79,8 @@ export default function Navbar() {
               }}
             >
               {languages.map((language) => (
-                <MenuItem key={language} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{language}</Typography>
+                <MenuItem key={language.key} disabled={language.disabled} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{language.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -96,7 +107,7 @@ export default function Navbar() {
 
           <Box sx={{ flexGrow: 0 }}>
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
-              <Avatar alt="Hubspot" src="/static/images/avatar/2.jpg" />
+              <Avatar alt="Hubspot" src="/hubspot.png" />
             </IconButton>
             <Menu
               sx={{ mt: '45px' }}
@@ -115,8 +126,8 @@ export default function Navbar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.key} disabled={setting.disabled} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>

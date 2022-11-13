@@ -1,12 +1,26 @@
 {
   "name": "Tommy Sales Assitant",
   "description": "Tool to assist sales teams in usage of CRM",
-  "version": "1.0",
+  "version": "0.1",
   "manifest_version": 3,
   "action": {
     "default_popup": "index.html",
-    "default_title": "Open the popup"
+    "default_title": "Use Tommy"
   },
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "all_frames": true,
+      "js": [
+        "contentScript.js"
+      ]
+    }
+  ],
   "icons": {
     "16": "logo192.png",
     "48": "logo192.png",
