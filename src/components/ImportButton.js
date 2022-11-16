@@ -9,11 +9,11 @@ const chromeService = new ChromeServices();
 
 export default function ImportButton() {
 
-  const [profile, setProfile] = useState("");
+  const [profile, setProfile] = useState([]);
 
   async function importProfile() {
-    const a = await chromeService.getProfileData();
-    setProfile(a);
+    const res = await chromeService.getProfileData();
+    setProfile(res);
   }
 
   return (
@@ -35,7 +35,10 @@ export default function ImportButton() {
         Import
       </Button>
       <Typography align='center' variant='subtitle2' sx={{ mt: '15px' }}>
-        {profile}
+        {profile?.name}
+        {profile?.city}
+        {profile?.region}
+        {profile?.country}
       </Typography>
     </>
   );
