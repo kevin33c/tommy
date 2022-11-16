@@ -14,7 +14,11 @@
     }
   ],
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "cookies"
+  ],
+  "host_permissions": [
+    "https://www.linkedin.com/"
   ],
   "icons": {
     "16": "logo192.png",

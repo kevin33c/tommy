@@ -2,9 +2,11 @@ import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { ChromeServices } from '../services/chrome.services';
+import { HubSpotServices } from '../services/hubspot.services';
 
 
 const chromeService = new ChromeServices();
+const hubSpotServices = new HubSpotServices();
 
 
 export default function ImportButton() {
@@ -14,6 +16,8 @@ export default function ImportButton() {
   async function importProfile() {
     const res = await chromeService.getProfileData();
     setProfile(res);
+    
+    hubSpotServices.createContact();
   }
 
   return (
